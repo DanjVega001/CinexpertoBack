@@ -16,6 +16,16 @@ class UserDataMapper {
         return $user;
     }
 
+    public function modelToEntity(UserModel $userModel):User
+    {
+        $user = new User(
+            $userModel->name,
+            $userModel->email,
+            $userModel->password
+        );
+        return $user;
+    }
+
     public function mapToModel(User $user):UserModel
     {
         $userModel = new UserModel();

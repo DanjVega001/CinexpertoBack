@@ -35,6 +35,7 @@ return [
 
     'mailers' => [
         'smtp' => [
+            'driver' => env('MAIL_MAILER', 'smtp'),
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
             'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
@@ -44,6 +45,11 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+
+
+            'auth_mode'  => null,
+            'verify_peer' => false,
+           
         ],
 
         'ses' => [
