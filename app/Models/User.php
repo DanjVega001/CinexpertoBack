@@ -23,7 +23,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id'
+        'role_id',
+        'profileImage',
     ];
 
     /**
@@ -56,8 +57,19 @@ class User extends Authenticatable
         return $this->hasOne(Point::class, 'user_id');
     }
 
-    public function profile()
+    public function ranks()
     {
-        return $this->hasOne(Profile::class, 'user_id');
+        return $this->belongsToMany(Rank::class, 'rank_user');
     }
+
+    public function trivias()
+    {
+        return $this->belongsToMany(Trivia::class, 'trivia_user');
+    }
+
+    public function publishedTrivias()
+    {
+        return $this->hasMany(PublishedTrivia::class, 'user_id');
+    }
+
 }

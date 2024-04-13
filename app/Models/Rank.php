@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Profile extends Model
+class Rank extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'profileImage',
-        'user_id',
+        'nameRank',
+        'pointsRequired',
+        'emojiRank',
     ];
 
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsToMany(User::class, 'rank_user');
     }
+
 }
