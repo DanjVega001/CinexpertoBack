@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Features\User\Domain\Repositories\ProfileRepository;
 use App\Features\User\Domain\Repositories\UserRepository;
+use App\Features\User\Infrastructure\Persistence\ProfileEloquentRepository;
 use App\Features\User\Infrastructure\Persistence\UserEloquentRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(UserRepository::class, UserEloquentRepository::class);
+        $this->app->bind(ProfileRepository::class, ProfileEloquentRepository::class);
     }
 
     /**

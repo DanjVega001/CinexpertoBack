@@ -12,5 +12,4 @@ interface UserRepository {
 
     public function logout(string $idToken);
 
-
 }

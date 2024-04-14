@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean("isPublished");
             $table->unsignedBigInteger('level_id');
             $table->foreign('level_id')->references('id')->on('levels');
+            $table->timestamps();
         });
     }
 

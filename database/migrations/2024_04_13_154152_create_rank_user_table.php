@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('rank_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('rank_id')->references('id')->on('ranks');
+            $table->timestamps();
         });
     }
 

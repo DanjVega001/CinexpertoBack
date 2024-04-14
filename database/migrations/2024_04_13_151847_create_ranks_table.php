@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("nameRank");
             $table->integer("pointsRequired");
             $table->string("emojiRank");
+            $table->timestamps();
         });
     }
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('trivia_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('trivia_id')->references('id')->on('trivia');
+            $table->timestamps();
         });
     }
 

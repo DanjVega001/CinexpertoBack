@@ -1,21 +1,17 @@
 <?php
 namespace App\Features\User\Application\Usecases;
 
-
 use App\Features\User\Domain\Repositories\UserRepository;
-use App\Features\User\Infrastructure\DataMappers\UserDataMapper;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LoginUsecase {
 
-    private UserDataMapper $userMapper;
     private UserRepository $repository;
 
 
-    public function __construct(UserRepository $repository, UserDataMapper $userDataMapper) {
+    public function __construct(UserRepository $repository) {
         $this->repository = $repository;
-        $this->userMapper = $userDataMapper;
     }
 
 

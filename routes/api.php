@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,5 +36,8 @@ Route::group([
 
     // RUTAS SOLO PARA LOS USUARIOS
     Route::middleware(['auth:api', 'role:user'])->group(function () {
+
+        // Mostrar los datos del usuario para el perfil
+        Route::post('profile', [ProfileController::class, "getProfile"]);
     });
 });

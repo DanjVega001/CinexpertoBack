@@ -4,9 +4,9 @@ namespace App\Features\User\Infrastructure\Persistence;
 use App\Features\User\Domain\Entities\User;
 use App\Features\User\Domain\Repositories\UserRepository;
 use App\Features\User\Infrastructure\DataMappers\UserDataMapper;
+use App\Models\Point;
 use App\Models\User as ModelsUser;
 use Exception;
-use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -22,8 +22,17 @@ class UserEloquentRepository implements UserRepository {
 
     public function register(User $user) 
     {
+        if (ModelsUser::where("name", "=", $user->getName())->exists()) {
+            throw new Exception("Username ya existe"); 
+        }
         $userModel = $this->userMapper->mapToModel($user);
+        $userModel->role_id = 2;
+        $userModel->assignRole("user");
         $userModel->save();
+        $points = new Point();
+        $points->points = 0;
+        $points->user_id = $userModel->id;
+        $points->save();
     }
 
     public function login(array $credentials):ModelsUser 
