@@ -1,5 +1,5 @@
 <?php
-namespace App\Features\User\Application\Usecases;
+namespace App\Features\User\Application\Usecases\User;
 
 use App\Features\User\Domain\Repositories\ProfileRepository;
 

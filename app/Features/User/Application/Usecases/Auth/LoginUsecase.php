@@ -1,5 +1,6 @@
 <?php
-namespace App\Features\User\Application\Usecases;
+namespace App\Features\User\Application\Usecases\Auth;
+
 
 use App\Features\User\Domain\Repositories\UserRepository;
 use Carbon\Carbon;

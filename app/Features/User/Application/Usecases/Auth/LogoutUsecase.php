@@ -1,21 +1,17 @@
 <?php
-namespace App\Features\User\Application\Usecases;
+namespace App\Features\User\Application\Usecases\Auth;
 
 use App\Features\User\Domain\Repositories\UserRepository;
-use App\Features\User\Infrastructure\DataMappers\UserDataMapper;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
 class LogoutUsecase {
 
-    private UserDataMapper $userMapper;
     private UserRepository $repository;
 
 
-    public function __construct(UserRepository $repository, UserDataMapper $userDataMapper) {
+    public function __construct(UserRepository $repository) {
         $this->repository = $repository;
-        $this->userMapper = $userDataMapper;
     }
 
 

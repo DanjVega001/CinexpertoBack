@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Features\User\Application\Usecases\GetProfileUsecase;
+use App\Features\User\Application\Usecases\User\GetProfileUsecase;
 use Exception;
 use Illuminate\Http\Request;
 

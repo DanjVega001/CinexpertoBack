@@ -1,12 +1,9 @@
 <?php
-namespace App\Features\User\Application\Usecases;
+namespace App\Features\User\Application\Usecases\Auth;
 
 
-use App\Features\User\Domain\Repositories\UserRepository;
-use App\Features\User\Infrastructure\DataMappers\UserDataMapper;
 use App\Mail\VerificationEmail;
 use App\Models\User;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;

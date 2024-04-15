@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Features\User\Application\Usecases\LoginUsecase;
-use App\Features\User\Application\Usecases\LogoutUsecase;
-use App\Features\User\Application\Usecases\RegisterUserUsecase;
-use App\Features\User\Application\Usecases\VerificationEmailUsecase;
+use App\Features\User\Application\Usecases\Auth\LoginUsecase;
+use App\Features\User\Application\Usecases\Auth\LogoutUsecase;
+use App\Features\User\Application\Usecases\Auth\RegisterUserUsecase;
+use App\Features\User\Application\Usecases\Auth\VerificationEmailUsecase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Exception;
