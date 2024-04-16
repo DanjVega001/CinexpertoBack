@@ -64,7 +64,7 @@ class User extends Authenticatable
 
     public function trivias()
     {
-        return $this->belongsToMany(Trivia::class, 'trivia_user');
+        return $this->belongsToMany(Trivia::class, 'trivia_user')->withPivot("state");
     }
 
     public function publishedTrivias()

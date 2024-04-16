@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LevelController;
+use App\Http\Controllers\LevelControloller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TriviaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +29,8 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('logout', [AuthController::class, "logout"]);        
+        //RUTA PARA MOSTRAR LOS NIVELES DE LAS TRIVIAS
+        Route::get('levels', [LevelController::class, "getLevels"]);
     });
 
     // RUTAS SOLO PARA ADMIN
@@ -39,5 +44,8 @@ Route::group([
 
         // Mostrar los datos del usuario para el perfil
         Route::post('profile', [ProfileController::class, "getProfile"]);
+
+        // Ruta para mostrar las trivias en base al level
+        Route::get('trivias/{levelID}', [TriviaController::class, "getTriviasByLevelID"]);
     });
 });

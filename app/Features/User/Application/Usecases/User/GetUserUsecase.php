@@ -4,7 +4,7 @@ namespace App\Features\User\Application\Usecases\User;
 use App\Features\User\Domain\Repositories\ProfileRepository;
 use App\Models\User;
 
-class GetUserusecase {
+class GetUserUsecase {
 
     private ProfileRepository $repository;
 

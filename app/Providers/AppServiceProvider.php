@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Features\Trivia\Domain\Repositories\TriviaRepository;
+use App\Features\Trivia\Infrastructure\Persistence\TriviaEloquentRepository;
 use App\Features\User\Domain\Repositories\PointRepository;
 use App\Features\User\Domain\Repositories\ProfileRepository;
 use App\Features\User\Domain\Repositories\UserRepository;
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserRepository::class, UserEloquentRepository::class);
         $this->app->bind(ProfileRepository::class, ProfileEloquentRepository::class);
         $this->app->bind(PointRepository::class, PointEloquentRepository::class);
+        $this->app->bind(TriviaRepository::class, TriviaEloquentRepository::class);
     }
 
     /**

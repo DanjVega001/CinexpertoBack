@@ -49,6 +49,7 @@ class UserService {
         return [
             "name" => $user->name,
             "nameRank" => $nameRank,
+            'urlImageProfile' => $user->profileImage,
             "points" => $pointsUser,
             'numClassification' => $numClassification,
             'numTriviaAnswered' => $numTriviaAnswered,
