@@ -5,4 +5,6 @@ interface PointRepository{
 
     public function getClassification():mixed;
 
+    public function updatePoints(?int $userID,$points);
+
 }

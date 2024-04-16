@@ -2,12 +2,7 @@
 namespace App\Features\User\Infrastructure\Persistence;
 
 use App\Features\User\Application\Services\UserService;
-use App\Features\User\Application\Usecases\User\GetClassificationUsecase;
-use App\Features\User\Domain\Repositories\PointRepository;
 use App\Features\User\Domain\Repositories\ProfileRepository;
-use App\Features\User\Infrastructure\DataMappers\UserDataMapper;
-use App\Models\Point;
-use App\Models\Rank;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;

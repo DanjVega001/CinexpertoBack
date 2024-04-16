@@ -1,8 +1,6 @@
 <?php
 namespace App\Features\Trivia\Application\Services;
 
-use Illuminate\Support\Arr;
-use PhpParser\Node\Stmt\Echo_;
 
 class TriviaService {
    

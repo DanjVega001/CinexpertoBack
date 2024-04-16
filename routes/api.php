@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
+
     Route::post('login', [AuthController::class, "login"]);
     Route::post('signup', [AuthController::class, "signup"]);
     Route::post('verification-email', [AuthController::class, "sendVerificationEmail"]);
@@ -47,5 +49,13 @@ Route::group([
 
         // Ruta para mostrar las trivias en base al level
         Route::get('trivias/{levelID}', [TriviaController::class, "getTriviasByLevelID"]);
+
+        // Ruta para mostrar una trivia
+        Route::get('trivia/{triviaID}', [TriviaController::class, "getTrivia"]);
+
+
+        // Ruta para guardar las trivias hechas y actualizar el puntaje
+        Route::post('completed-trivias', [TriviaController::class, "completedTrivia"]);
+
     });
 });
