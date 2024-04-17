@@ -12,7 +12,7 @@ class CompletedTriviaUsecase {
         $this->repository = $repository;
     }
 
-    public function execute(array $triviasCompleted, int $points) {
-        $this->repository->completedTrivia($triviasCompleted, $points);
+    public function execute(array $triviasCompleted, int $points):mixed {
+        return $this->repository->completedTrivia($triviasCompleted, $points);
     }
 }

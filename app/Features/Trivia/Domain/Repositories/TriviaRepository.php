@@ -9,5 +9,5 @@ interface TriviaRepository {
 
     public function getTrivia(int $triviaID):mixed;
 
-    public function completedTrivia(array $triviasCompleted, int $points);
+    public function completedTrivia(array $triviasCompleted, int $points):mixed;
 }

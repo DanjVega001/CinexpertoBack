@@ -53,9 +53,11 @@ Route::group([
         // Ruta para mostrar una trivia
         Route::get('trivia/{triviaID}', [TriviaController::class, "getTrivia"]);
 
-
         // Ruta para guardar las trivias hechas y actualizar el puntaje
         Route::post('completed-trivias', [TriviaController::class, "completedTrivia"]);
+
+        // Ruta para mostrar la clasificacion
+        Route::get('classification', [TriviaController::class, "getClassification"]);
 
     });
 });

@@ -53,7 +53,7 @@ class TriviaEloquentRepository implements TriviaRepository {
         ];
     }
 
-    public function completedTrivia(array $triviasCompleted, int $points):void
+    public function completedTrivia(array $triviasCompleted, int $points):mixed
     {
         $user = Auth::user();
         foreach ($triviasCompleted as $triviaCompleted) {
@@ -65,7 +65,7 @@ class TriviaEloquentRepository implements TriviaRepository {
             $trivia = Trivia::find($triviaCompleted["id"]);
             $trivia->users()->attach($user->id, ["state" => $triviaCompleted["state"]]);
         }
-        $this->updatePointsUsecase->execute($user->id, $points);
+        return $this->updatePointsUsecase->execute($user->id, $points);
     }
 
     public function getUser(?int $userID): User

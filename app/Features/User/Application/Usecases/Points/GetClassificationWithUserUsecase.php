@@ -3,14 +3,14 @@ namespace App\Features\User\Application\Usecases\Points;
 
 use App\Features\User\Domain\Repositories\PointRepository;
 
-class UpdatePointsUsecase {
+class GetClassificationWithUserUsecase {
     private PointRepository $repository;
 
     public function __construct(PointRepository $repository) {
         $this->repository = $repository;
     }
 
-    public function execute(?int $userID, int $points) : mixed {
-        return $this->repository->updatePoints($userID, $points);
+    public function execute():mixed {
+        return $this->repository->getClassificationWithUser();
     }
 }
