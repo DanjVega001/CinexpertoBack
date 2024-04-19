@@ -29,4 +29,8 @@ class ProfileEloquentRepository implements ProfileRepository{
         return $this->userService->getProfile($user);
     }
 
+    public function getAllUsers():mixed {
+        return User::where("role_id", "=", 2)->get();
+    }
+
 }

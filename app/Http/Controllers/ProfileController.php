@@ -16,7 +16,6 @@ class ProfileController extends Controller
 
     public function getProfile(Request $request)
     {
-        /*
         try {
 
             $result = $this->getProfileUsecase->execute($request->userID);
@@ -27,7 +26,6 @@ class ProfileController extends Controller
             return response()->json([
                 'error' => $e->getMessage()
             ], 400);
-        }   */    
-        return "Hola mundo";
+        }      
     }
 }

@@ -9,6 +9,7 @@ interface ProfileRepository{
 
     public function getProfile(?int $userID):array;
 
+    public function getAllUsers():mixed;
     
 
 }
