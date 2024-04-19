@@ -137,16 +137,16 @@ class TriviaEloquentRepository implements TriviaRepository {
 
     public function updateTrivia(array $trivia, int $triviaID)
     {
-        $trivia = Trivia::find($triviaID);
+        $triviaUpdated = Trivia::find($triviaID);
         if (!$trivia) throw new Exception("Trivia no encontrada");
-        $trivia->question = $trivia["question"];
-        $trivia->answerCorrect = $trivia["answerCorrect"];
-        $trivia->answerOne = $trivia["answerOne"];
-        $trivia->answerTwo = $trivia["answerTwo"];
-        $trivia->answerThree = $trivia["answerThree"];
-        $trivia->isPublished = $trivia["isPublished"];
-        $trivia->level_id = $trivia["level_id"];
-        $trivia->save();
+        $triviaUpdated->question = $trivia["question"];
+        $triviaUpdated->answerCorrect = $trivia["answerCorrect"];
+        $triviaUpdated->answerOne = $trivia["answerOne"];
+        $triviaUpdated->answerTwo = $trivia["answerTwo"];
+        $triviaUpdated->answerThree = $trivia["answerThree"];
+        $triviaUpdated->isPublished = $trivia["isPublished"];
+        $triviaUpdated->level_id = $trivia["level_id"];
+        $triviaUpdated->save();
     }
 
     public function deleteTrivia(int $triviaID)

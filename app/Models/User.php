@@ -14,7 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Filament\Panel;
 
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable 
 {
     use HasRoles, HasApiTokens, HasFactory, Notifiable;
 
@@ -32,11 +32,7 @@ class User extends Authenticatable implements FilamentUser
     ];
 
 
-    public function canAccessPanel(Panel $panel): bool
-    {
-        return $this->hasRole("admin") && $this->email=="admin@admin.com";
-    }
-
+  
     /**
      * The attributes that should be hidden for serialization.
      *

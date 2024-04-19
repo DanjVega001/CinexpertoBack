@@ -6,7 +6,6 @@ use App\Features\Trivia\Application\Usecases\CreateTriviaUsecase;
 use App\Features\Trivia\Application\Usecases\DeleteTriviaUsecase;
 use App\Features\Trivia\Application\Usecases\GetAllTrivias;
 use App\Features\Trivia\Application\Usecases\UpdateTriviaUsecase;
-use App\Features\User\Application\Usecases\User\GetAllUsersUsecase;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,17 +13,14 @@ use Illuminate\Support\Facades\Validator;
 class AdminController extends Controller
 {
     private GetAllTrivias $getAllTrivias;
-    private GetAllUsersUsecase $getAllUsersUsecase;
     private CreateTriviaUsecase $createTriviaUsecase;
     private UpdateTriviaUsecase $updateTriviaUsecase;
     private DeleteTriviaUsecase $deleteTriviaUsecase;
 
-    public function __construct(GetAllTrivias $getAllTrivias, GetAllUsersUsecase $getAllUsersUsecase, 
-        CreateTriviaUsecase $createTriviaUsecase, UpdateTriviaUsecase $updateTriviaUsecase, 
-        DeleteTriviaUsecase $deleteTriviaUsecase)
+    public function __construct(GetAllTrivias $getAllTrivias, CreateTriviaUsecase $createTriviaUsecase, 
+        UpdateTriviaUsecase $updateTriviaUsecase, DeleteTriviaUsecase $deleteTriviaUsecase)
     {
         $this->getAllTrivias = $getAllTrivias;
-        $this->getAllUsersUsecase = $getAllUsersUsecase;
         $this->createTriviaUsecase = $createTriviaUsecase;
         $this->updateTriviaUsecase = $updateTriviaUsecase;
         $this->deleteTriviaUsecase = $deleteTriviaUsecase;
@@ -42,18 +38,6 @@ class AdminController extends Controller
                 'error' => $e->getMessage()
             ], 400);
         }      
-    }
-
-    public function getAllUsers()
-    {
-        try {
-            $result = $this->getAllUsersUsecase->execute();
-            return response()->json($result);
-        } catch (Exception $e) {
-            return response()->json([
-                'error' => $e->getMessage()
-            ], 400);
-        }
     }
 
     public function createTrivia(Request $request)
@@ -100,7 +84,6 @@ class AdminController extends Controller
             if ($validator->fails()) {
                 return response()->json(['error' => $validator->errors()->first()], 400);
             }
-
             $this->updateTriviaUsecase->execute($request->all(), $triviaID);
             return response()->json(["message" => "Trivia actualizada correctamente"]);
         } catch (Exception $e) {
@@ -121,4 +104,6 @@ class AdminController extends Controller
             ], 400);
         }
     }
+    
+
 }

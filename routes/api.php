@@ -6,6 +6,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TriviaController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +48,10 @@ Route::group([
         Route::delete('trivias/{triviaID}', [AdminController::class, "deleteTrivia"]);
 
         // Ruta para mostrar los usuarios excepto el admin
-        Route::get('users', [AdminController::class, "getAllUsers"]);
+        Route::get('users', [ProfileController::class, "getAllUsers"]);
 
+        // Ruta para elimiar un usuario
+        Route::delete('users/{userID}', [ProfileController::class, "deleteUser"]);
 
     });
 
@@ -73,6 +76,9 @@ Route::group([
 
         // Ruta para publicar una trivia
         Route::post('published-trivia', [TriviaController::class, "publishedTrivia"]);
+
+        // Ruta para actualizar los datos del usuario
+        Route::put('profile', [ProfileController::class, "updateUser"]);
 
     });
 });
