@@ -17,11 +17,13 @@ interface TriviaRepository {
 
     public function publishedTrivia(array $data);
 
-    public function getAllTrivias():mixed;
+    public function getAllTrivias(bool $isPublished):mixed;
 
     public function createTrivia(array $trivia);
 
     public function updateTrivia(array $trivia, int $triviaID);
 
     public function deleteTrivia(int $triviaID);
+
+    public function validateTrivia(array $data);
 }

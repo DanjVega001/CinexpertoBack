@@ -14,6 +14,7 @@ class PublishedTrivia extends Model
         'pointsEarned',
         'trivia_id',
         'user_id',
+        'comment'
     ];
 
     public function trivia()

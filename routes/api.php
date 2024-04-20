@@ -42,7 +42,7 @@ Route::group([
     Route::middleware(['auth:api', 'role:admin'])->group(function () {
 
         // Rutas para el crud de trivias
-        Route::get('trivias', [AdminController::class, "getAllTrivias"]);
+        Route::post('get/trivias', [AdminController::class, "getAllTrivias"]);
         Route::post('trivias', [AdminController::class, "createTrivia"]);
         Route::put('trivias/{triviaID}', [AdminController::class, "updateTrivia"]);
         Route::delete('trivias/{triviaID}', [AdminController::class, "deleteTrivia"]);
@@ -52,6 +52,9 @@ Route::group([
 
         // Ruta para elimiar un usuario
         Route::delete('users/{userID}', [ProfileController::class, "deleteUser"]);
+
+        // Ruta para validar las trivias
+        Route::put('validate/trivias', [AdminController::class, "validateTrivia"]);
 
     });
 

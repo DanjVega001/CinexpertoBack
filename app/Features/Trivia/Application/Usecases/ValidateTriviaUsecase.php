@@ -4,15 +4,17 @@ namespace App\Features\Trivia\Application\Usecases;
 
 use App\Features\Trivia\Domain\Repositories\TriviaRepository;
 
-class GetAllTrivias {
+class ValidateTriviaUsecase {
+
     private TriviaRepository $repository;
 
-    public function __construct(TriviaRepository $repository) {
+    public function __construct(TriviaRepository $repository)
+    {
         $this->repository = $repository;
     }
 
-    public function execute(bool $isPublished):mixed {
-        return $this->repository->getAllTrivias($isPublished);
+    public function execute(array $data)
+    {
+        $this->repository->validateTrivia($data);
     }
-    
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('published_trivia', function (Blueprint $table) {
             $table->id();
             $table->string("state");
+            $table->string("comment")->nullable();
             $table->integer("pointsEarned");
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('trivia_id');

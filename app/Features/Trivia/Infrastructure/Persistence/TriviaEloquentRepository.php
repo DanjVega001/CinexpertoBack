@@ -50,6 +50,7 @@ class TriviaEloquentRepository implements TriviaRepository {
             "answerTwo" => $trivia->answerTwo,
             "answerThree" => $trivia->answerThree,
             "pointsEarned" => $trivia->level->pointsEarned,
+            "level_id" => $trivia->level_id
         ];
     }
 
@@ -123,9 +124,9 @@ class TriviaEloquentRepository implements TriviaRepository {
         $publishedTrivia->save();
     }
 
-    public function getAllTrivias():mixed
+    public function getAllTrivias(bool $isPublished):mixed
     {
-        return Trivia::where("isPublished", true)->get();
+        return Trivia::with('publishedTrivia')->where('isPublished', $isPublished)->paginate(10);
     }
 
     public function createTrivia(array $trivia)
@@ -144,7 +145,6 @@ class TriviaEloquentRepository implements TriviaRepository {
         $triviaUpdated->answerOne = $trivia["answerOne"];
         $triviaUpdated->answerTwo = $trivia["answerTwo"];
         $triviaUpdated->answerThree = $trivia["answerThree"];
-        $triviaUpdated->isPublished = $trivia["isPublished"];
         $triviaUpdated->level_id = $trivia["level_id"];
         $triviaUpdated->save();
     }
@@ -154,5 +154,20 @@ class TriviaEloquentRepository implements TriviaRepository {
         $trivia = Trivia::find($triviaID);
         if (!$trivia) throw new Exception("Trivia no encontrada");
         $trivia->delete();
+    }
+
+    public function validateTrivia(array $data)
+    {
+        $trivia = Trivia::find($data["trivia_id"]);
+        $publishedTrivia =  $trivia->publishedTrivia;
+        if (!$publishedTrivia) throw new Exception("Trivia no encontrada");
+        $publishedTrivia->state = $data["state"];
+        if ($data["state"] == "rechazada"){ 
+            $publishedTrivia->comment = $data["comment"];
+        } else {
+            $trivia->isPublished = true;
+            $trivia->save();
+        }
+        $publishedTrivia->save();
     }
 }
