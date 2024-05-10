@@ -17,6 +17,10 @@ class VerificationEmailUsecase {
             throw new Exception("Email ya existe");
         }
 
+        if (User::where('name', $request->name)->exists()) {
+            throw new Exception("Username ya existe");
+        }
+
         $code = rand(100000, 999999);
         Mail::to($request->email)->send(new VerificationEmail($code));
         return $code;

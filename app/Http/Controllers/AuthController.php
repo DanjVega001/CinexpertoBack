@@ -64,9 +64,9 @@ class AuthController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'name' => 'required|string',
+                'name' => 'required|string|min:4',
                 'email' => 'required|string|email|unique:users',
-                'password' => 'required|string'
+                'password' => 'required|string|min:6'
             ]);
     
             if ($validator->fails()) {
@@ -79,11 +79,12 @@ class AuthController extends Controller
                 'message' => 'Successfully created user!'
             ], 201);
 
-        } catch (Exception $e) {
+        }catch (Exception $e) {
             return response()->json([
                 'error' => $e->getMessage()
             ], 400);
-        }   
+        }  
+        
     }
 
     public function logout(Request $request)

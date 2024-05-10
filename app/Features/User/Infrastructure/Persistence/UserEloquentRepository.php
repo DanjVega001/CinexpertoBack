@@ -39,12 +39,12 @@ class UserEloquentRepository implements UserRepository {
     {   
         $user = ModelsUser::where('email', $credentials['email'])->first();
 
-        if (!Auth::attempt($credentials)) {
-            throw new Exception("No existe ese usuario");   
-        }
-
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             throw new Exception("Credenciales incorrectas");   
+        }
+
+        if (!Auth::attempt($credentials)) {
+            throw new Exception("No existe ese usuario");   
         }
 
         return $user;

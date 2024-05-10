@@ -20,7 +20,7 @@ class User {
 
     public function validateUser() {
         if (count(str_split($this->password)) < 6 || 
-            preg_match("/^(?=.*[A-Za-z])(?=.*\d).+$/", $this->password)) {
+            !preg_match("/^(?=.*[a-z])(?=.*[0-9]).{6,}/", $this->password)) {
             throw new Exception("Contraseña Invalida");
         }
     }
