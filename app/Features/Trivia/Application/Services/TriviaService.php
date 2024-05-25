@@ -7,14 +7,18 @@ class TriviaService
 {
 
 
-    public function getTriviasByLevelID(mixed $trivias, mixed $triviasUser): array
+    public function getTriviasByLevelID(mixed $trivias, mixed $triviasUser, int $levelID): array
     {
 
-        $triviasUser = array_map(function ($item) {
-            return [
-                "trivia_id" => $item["id"],
-                "state" => $item["pivot"]["state"]
-            ];
+        $triviasUser = array_map(function ($item) use ($levelID) {
+            if ($item["level_id"] == $levelID) {
+                return [
+                    "trivia_id" => $item["id"],
+                    "state" => $item["pivot"]["state"]
+                ];
+            } else {
+                return;
+            }
         }, $triviasUser->toArray());
 
         return $this->groupBy($triviasUser, $trivias->toArray());
@@ -26,24 +30,26 @@ class TriviaService
         $data = array();
         $i = 0;
         foreach ($arrayMerge as $item) {
-            $trivia_id = $item["trivia_id"];
-            if (in_array([
-                "trivia_id" => $trivia_id, 
-                "state" => "pendiente"
-            ], $data)) {
-                $id = array_search([
+            if (isset($item)) {
+                $trivia_id = $item["trivia_id"];
+                if (in_array([
                     "trivia_id" => $trivia_id, 
                     "state" => "pendiente"
-                ], $data);                    
-
-                $data[$id]["state"] = $item["state"];
-            } else {
-                array_push($data, [
-                    ...$item,
-                    "state" => "pendiente",
-                ]);
+                ], $data)) {
+                    $id = array_search([
+                        "trivia_id" => $trivia_id, 
+                        "state" => "pendiente"
+                    ], $data);                    
+    
+                    $data[$id]["state"] = $item["state"];
+                } else {
+                    array_push($data, [
+                        ...$item,
+                        "state" => "pendiente",
+                    ]);
+                }
+                $i++;
             }
-            $i++;
         }
         return $data;
 

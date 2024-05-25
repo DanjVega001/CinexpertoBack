@@ -35,7 +35,7 @@ class TriviaEloquentRepository implements TriviaRepository {
         $trivias = Trivia::select("id AS trivia_id")->where('level_id', $levelID)
             ->where('isPublished', true)->get();
         return $this->triviaService->getTriviasByLevelID($trivias, $user->trivias
-            ->select('pivot', 'id'));
+            ->select('pivot', 'id', 'level_id'), $levelID);
     }
 
     public function getTrivia(int $triviaID):mixed
@@ -79,8 +79,6 @@ class TriviaEloquentRepository implements TriviaRepository {
     public function getPublishedTrivias(string $state):mixed
     {
         $user = Auth::user();
-        if (!$state || !PublishedTrivia::where("state", $state)->where("user_id", $user->id)->exists())  
-            return ["message" => "No tienes trivias publicadas"];
         $trivias = PublishedTrivia::with("trivia")->where("state", $state)->where("user_id", $user->id);
         $data = array();
         foreach ($trivias->get() as $trv) {
